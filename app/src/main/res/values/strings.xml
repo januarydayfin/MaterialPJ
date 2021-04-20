@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MaterialPJ</string>
+    <string name="search_wiki">Поиск Википедия</string>
+    <string name="helper_text">Попробуйте поискать на Википедии</string>
 </resources>
