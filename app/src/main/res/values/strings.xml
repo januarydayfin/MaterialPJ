@@ -2,4 +2,9 @@
     <string name="app_name">MaterialPJ</string>
     <string name="search_wiki">Поиск Википедия</string>
     <string name="helper_text">Попробуйте поискать на Википедии</string>
+    <string name="settings">Settings</string>
+    <string name="favorite">Favorite</string>
+    <string name="yeyesterday">Позавчера</string>
+    <string name="yesterday">Вчера</string>
+    <string name="today">Сегодня</string>
 </resources>
