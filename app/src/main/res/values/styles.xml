@@ -5,6 +5,27 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="fabColor">@color/fab_color_light</item>
+        <item name="bottomAppBarColor">@color/bottom_app_bar_light</item>
     </style>
 
+    <style name="AppThemeDay" parent="AppTheme">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="fabColor">@color/fab_color_light</item>
+        <item name="bottomAppBarColor">@color/bottom_app_bar_light</item>
+    </style>
+
+    <style name="AppThemeNight" parent="AppTheme">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="fabColor">@color/fab_color_dark</item>
+        <item name="bottomAppBarColor">@color/bottom_app_bar_dark</item>
+    </style>
+    
+    
 </resources>

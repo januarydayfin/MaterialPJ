@@ -7,4 +7,11 @@
     <string name="yeyesterday">Позавчера</string>
     <string name="yesterday">Вчера</string>
     <string name="today">Сегодня</string>
+    <string name="search">Search</string>
+    <string name="settings_title">Choose the Theme</string>
+    <string name="day_theme">Day Theme</string>
+    <string name="night_theme">Night Theme</string>
+    <string name="moon_theme">Moon Theme</string>
+    <string name="mars_theme">Mars Theme</string>
+    <string name="apply">Apply</string>
 </resources>

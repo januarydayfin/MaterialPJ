@@ -5,4 +5,8 @@
     <color name="colorAccent">#65F3E5</color>
     <color name="loadingBackground">#80FFFFFF</color>
     <color name="color_gray">#8C8C8C</color>
+    <color name="fab_color_light">#EC7EFF</color>
+    <color name="fab_color_dark">#AB16C5</color>
+    <color name="bottom_app_bar_light">#FF9800</color>
+    <color name="bottom_app_bar_dark">#B86012</color>
 </resources>

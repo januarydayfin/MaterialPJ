@@ -29,6 +29,13 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
+    sourceSets {
+        main {
+            res {
+                srcDirs 'src/main/res', 'src/main/res/themes'
+            }
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -41,6 +48,9 @@ android {
 }
 
 dependencies {
+    //AndroidX
+    implementation 'androidx.preference:preference:1.1.1'
+
     //Retrofit - знакомая нам по прошлому курсу библиотека
     implementation 'com.squareup.retrofit2:retrofit:2.6.2'
     implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
