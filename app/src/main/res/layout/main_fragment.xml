@@ -8,7 +8,7 @@
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-    android:layout_margin="@dimen/layout_default_margin">
+        android:layout_margin="@dimen/layout_default_margin">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_layout"
@@ -36,10 +36,10 @@
             android:id="@+id/chipGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:singleSelection="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/input_layout">
+            app:layout_constraintTop_toBottomOf="@+id/input_layout"
+            app:singleSelection="true">
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/today_chip"
@@ -65,6 +65,7 @@
                 android:text="@string/yeyesterday"
                 app:rippleColor="@color/colorAccent" />
         </com.google.android.material.chip.ChipGroup>
+
         <com.krayapp.materialpj.SquareImage
             android:id="@+id/PODImage"
             android:layout_width="match_parent"
@@ -76,19 +77,21 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/no_picture" />
 
-                <include
-                    android:id="@+id/included_loading"
-                    layout="@layout/loading_layout" />
+        <include
+            android:id="@+id/included_loading"
+            layout="@layout/loading_layout" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <include layout="@layout/bottom_sheet_layout" />
+
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottom_app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         app:backgroundTint="?bottomAppBarColor"
-        app:fabAlignmentMode="center"
+        app:fabAlignmentMode="end"
         app:navigationIcon="@drawable/ic_hamburger_menu_bottom_bar" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

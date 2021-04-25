@@ -1,5 +1,6 @@
 package com.krayapp.materialpj
 
+import BottomNavigationDrawerFragment
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -34,10 +35,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.app_bar_fav -> {
-                Toast.makeText(this, "Favorite", Toast.LENGTH_SHORT).show()
-                recreate()
-            }
+            R.id.app_bar_fav -> Toast.makeText(this, "Favorite", Toast.LENGTH_SHORT).show()
             R.id.app_bar_search -> Toast.makeText(this, "Search", Toast.LENGTH_SHORT).show()
             R.id.app_bar_settings -> {
                 supportFragmentManager.apply {
@@ -47,6 +45,11 @@ class MainActivity : AppCompatActivity() {
                         .commitAllowingStateLoss()
                 }
                 true
+            }
+            android.R.id.home -> {
+                this.let {
+                    BottomNavigationDrawerFragment().show(it.supportFragmentManager, "tag")
+                }
             }
         }
         return super.onOptionsItemSelected(item)

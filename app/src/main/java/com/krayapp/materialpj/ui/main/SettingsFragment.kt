@@ -36,17 +36,19 @@ class SettingsFragment : Fragment() {
                 when (it.tag.toString()) {
                     "day" -> {
                         PreferenceManager.getDefaultSharedPreferences(context).edit()
-                            .putInt(MainActivity.KEY_THEME, R.style.AppThemeDay).apply()
+                            .putInt(MainActivity.KEY_THEME, R.style.AppTheme_Day).apply()
                     }
                     "night" -> {
                         PreferenceManager.getDefaultSharedPreferences(context).edit()
-                            .putInt(MainActivity.KEY_THEME, R.style.AppThemeNight).apply()
+                            .putInt(MainActivity.KEY_THEME, R.style.AppTheme_Night).apply()
                     }
                     "moon" -> {
-
+                        PreferenceManager.getDefaultSharedPreferences(context).edit()
+                            .putInt(MainActivity.KEY_THEME, R.style.AppTheme_Moon).apply()
                     }
                     "mars" -> {
-
+                        PreferenceManager.getDefaultSharedPreferences(context).edit()
+                            .putInt(MainActivity.KEY_THEME, R.style.AppTheme_Mars).apply()
                     }
                 }
             }
