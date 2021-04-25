@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentTransaction
 import androidx.preference.PreferenceManager
 import com.krayapp.materialpj.ui.main.MainPictureFragment
 import com.krayapp.materialpj.ui.main.SettingsFragment
@@ -18,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         var currentTheme = PreferenceManager.getDefaultSharedPreferences(this)
-            .getInt(KEY_THEME, R.style.AppThemeDay)
+            .getInt(KEY_THEME, R.style.AppTheme_Day)
         setTheme(currentTheme)
         setContentView(R.layout.main_activity)
         if (savedInstanceState == null) {
@@ -41,6 +42,7 @@ class MainActivity : AppCompatActivity() {
                 supportFragmentManager.apply {
                     beginTransaction()
                         .replace(R.id.container, SettingsFragment.newInstance())
+                        .setTransition((FragmentTransaction.TRANSIT_FRAGMENT_FADE))
                         .addToBackStack("")
                         .commitAllowingStateLoss()
                 }
