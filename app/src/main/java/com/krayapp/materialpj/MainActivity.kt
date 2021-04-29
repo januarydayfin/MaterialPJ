@@ -10,6 +10,8 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.preference.PreferenceManager
 import com.krayapp.materialpj.ui.main.MainPictureFragment
 import com.krayapp.materialpj.ui.main.SettingsFragment
+import kotlinx.android.synthetic.main.main_activity.*
+import kotlinx.android.synthetic.main.main_fragment.*
 
 class MainActivity : AppCompatActivity() {
     companion object {
@@ -22,6 +24,7 @@ class MainActivity : AppCompatActivity() {
             .getInt(KEY_THEME, R.style.AppTheme_Day)
         setTheme(currentTheme)
         setContentView(R.layout.main_activity)
+//        setNavigationButton()
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.container, MainPictureFragment.newInstance())
@@ -36,12 +39,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.app_bar_fav -> Toast.makeText(this, "Favorite", Toast.LENGTH_SHORT).show()
+            R.id.app_bar_home -> Toast.makeText(this, "Favorite", Toast.LENGTH_SHORT).show()
             R.id.app_bar_search -> Toast.makeText(this, "Search", Toast.LENGTH_SHORT).show()
             R.id.app_bar_settings -> {
                 supportFragmentManager.apply {
                     beginTransaction()
-                        .replace(R.id.container, SettingsFragment.newInstance())
+                        .replace(R.id.main_frag_container, SettingsFragment.newInstance())
                         .setTransition((FragmentTransaction.TRANSIT_FRAGMENT_FADE))
                         .addToBackStack("")
                         .commitAllowingStateLoss()
@@ -56,4 +59,5 @@ class MainActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
 }

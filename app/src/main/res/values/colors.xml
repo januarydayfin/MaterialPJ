@@ -5,9 +5,9 @@
     <color name="colorAccent">#65F3E5</color>
     <color name="loadingBackground">#80FFFFFF</color>
     <color name="color_gray">#8C8C8C</color>
-    <color name="day_background_color">#FBF0DC</color>
+    <color name="day_background_color">#FFE9DA</color>
     <color name="night_background_color">#252525</color>
-    <color name="day_bottomsheet_color">#CAB097</color>
+    <color name="day_bottomsheet_color">#E3B991</color>
     <color name="night_bottomsheet_color">#404977</color>
     <color name="fab_color_light">#2196F3</color>
     <color name="fab_color_dark">#BF124D</color>
