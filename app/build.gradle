@@ -50,6 +50,8 @@ android {
 dependencies {
     //AndroidX
     implementation 'androidx.preference:preference:1.1.1'
+    //CircleIndicator
+    implementation 'me.relex:circleindicator:1.3.2'
 
     //Retrofit - знакомая нам по прошлому курсу библиотека
     implementation 'com.squareup.retrofit2:retrofit:2.6.2'

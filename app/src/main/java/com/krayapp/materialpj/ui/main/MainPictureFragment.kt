@@ -59,7 +59,7 @@ class MainPictureFragment : Fragment() {
             })
         }
         view_pager.adapter = ViewPagerAdapter(childFragmentManager, fragListForAdapter)
-//        setChipGroupListener()
+        setCircleIndicator()
         setNavigationButton()
         setBottomSheetBehavior(bottom_sheet_container)
         setBottomAppBar(view)
@@ -163,5 +163,9 @@ class MainPictureFragment : Fragment() {
                 else -> false
             }
         }
+    }
+    private fun setCircleIndicator(){
+        indicator.setViewPager(view_pager)
+        view_pager.adapter?.registerDataSetObserver(indicator.dataSetObserver)
     }
 }
