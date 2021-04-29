@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="fabColor" format="reference" />
+    <attr name="bottomAppBarColor" format="reference" />
+    <attr name="background_main" format="reference" />
+    <attr name="wikiIconColor" format="reference" />
+    <attr name="textColor" format="reference" />
+    <attr name="bottomSheetColor" format="reference"/>
+</resources>
