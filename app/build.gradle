@@ -19,7 +19,9 @@ android {
         Properties properties = new Properties()
         properties.load(project.rootProject.file("key.properties").newDataInputStream())
         def nasaApiKey  = properties.getProperty("NASA_API_KEY", "")
+        def youtubeApiKey = properties.getProperty("YOUTUBE_API_KEY", "")
         it.buildConfigField "String", "NASA_API_KEY", nasaApiKey
+        it.buildConfigField "String", "YOUTUBE_API_KEY", youtubeApiKey
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -48,6 +50,8 @@ android {
 }
 
 dependencies {
+    //YouTube
+    implementation files('libs/YouTubeAndroidPlayerApi.jar')
     //AndroidX
     implementation 'androidx.preference:preference:1.1.1'
     //CircleIndicator

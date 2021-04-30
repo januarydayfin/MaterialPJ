@@ -7,12 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.krayapp.materialpj.MainActivity
 import com.krayapp.materialpj.R
 import com.krayapp.materialpj.ui.main.viewpager.ViewPagerAdapter
@@ -20,14 +18,12 @@ import com.krayapp.materialpj.ui.main.viewpager.ViewPagerPictureFragment
 import com.krayapp.materialpj.viewmodel.MainViewModel
 import com.krayapp.materialpj.viewmodel.PictureData
 import com.krayapp.materialpj.viewmodel.PictureInfo
-import kotlinx.android.synthetic.main.bottom_sheet_layout.*
 import kotlinx.android.synthetic.main.main_fragment.*
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
 class MainPictureFragment : Fragment() {
-    private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
     private var fragListForAdapter: MutableList<ViewPagerPictureFragment> = mutableListOf()
 
     companion object {
@@ -53,15 +49,15 @@ class MainPictureFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         input_layout.setEndIconOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW).apply {
                 data = Uri.parse("https://en.wikipedia.org/wiki/${input_edit_text.text.toString()}")
             })
         }
         view_pager.adapter = ViewPagerAdapter(childFragmentManager, fragListForAdapter)
-        setCircleIndicator()
         setNavigationButton()
-        setBottomSheetBehavior(bottom_sheet_container)
+        setCircleIndicator()
         setBottomAppBar(view)
     }
 
@@ -82,8 +78,7 @@ class MainPictureFragment : Fragment() {
                 if (url.isNullOrEmpty()) {
                     Toast.makeText(context, "Нет данных", Toast.LENGTH_SHORT).show()
                 } else {
-                    bottom_sheet_description_header.text = title
-                    bottom_sheet_description.text = explanation
+
                     fragListForAdapter.add(ViewPagerPictureFragment(pictureInfo))
                     /*PODImage.load(url) {.s
                         lifecycle(viewLifecycleOwner)
@@ -123,10 +118,7 @@ class MainPictureFragment : Fragment() {
 
     }
 
-    private fun setBottomSheetBehavior(bottomSheet: ConstraintLayout) {
-        bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
-        bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-    }
+
 
     private fun setBottomAppBar(view: View) {
         val context = activity as MainActivity
@@ -147,7 +139,13 @@ class MainPictureFragment : Fragment() {
                     true
                 }
                 R.id.app_bar_search -> {
-                    Toast.makeText(context, "Search", Toast.LENGTH_SHORT).show()
+                    childFragmentManager.apply {
+                        beginTransaction()
+                            .replace(R.id.main_frag_container, YouTubeFragment.newInstance())
+                            .setTransition((FragmentTransaction.TRANSIT_FRAGMENT_FADE))
+                            .addToBackStack("")
+                            .commitAllowingStateLoss()
+                    }
                     true
                 }
                 R.id.app_bar_settings -> {
