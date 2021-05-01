@@ -1,32 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/background_main">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/main"
+        android:id="@+id/main_frag_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="@dimen/layout_default_margin">
+        android:layout_height="match_parent">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_layout"
+            android:layout_margin="@dimen/layout_default_margin"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="@string/search_wiki"
             android:textColorHint="?wikiIconColor"
-            app:helperTextTextColor="?wikiIconColor"
-            app:counterTextColor="?wikiIconColor"
             app:counterEnabled="true"
             app:counterMaxLength="20"
+            app:counterTextColor="?wikiIconColor"
             app:endIconCheckable="true"
             app:endIconDrawable="@drawable/ic_wikipedia"
-            app:endIconTint="?wikiIconColor"
             app:endIconMode="custom"
+            app:endIconTint="?wikiIconColor"
             app:helperText="@string/helper_text"
+            app:helperTextTextColor="?wikiIconColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -37,60 +38,48 @@
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chipGroup"
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/view_pager"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="0dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/input_layout"
-            app:singleSelection="true">
+            app:layout_constraintBottom_toBottomOf="parent">
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/today_chip"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_layout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/today"
-                app:rippleColor="@color/colorAccent" />
+                android:backgroundTint="?background_main"
+                app:tabMode="scrollable" />
+        </androidx.viewpager.widget.ViewPager>
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/yesterday_chip"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/yesterday"
-                app:rippleColor="@color/colorAccent" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/yeye_chip"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/yeyesterday"
-                app:rippleColor="@color/colorAccent" />
-        </com.google.android.material.chip.ChipGroup>
-
-        <com.krayapp.materialpj.SquareImage
-            android:id="@+id/PODImage"
+        <me.relex.circleindicator.CircleIndicator
+            android:id="@+id/indicator"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_height="48dp"
+            app:ci_drawable="?textColor"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/no_picture" />
+            app:layout_constraintTop_toBottomOf="@+id/input_layout"
+            app:layout_constraintVertical_bias="0.79" />
 
         <include
             android:id="@+id/included_loading"
             layout="@layout/loading_layout" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <include layout="@layout/bottom_sheet_layout" />
+<!--    <include layout="@layout/bottom_sheet_layout" />-->
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:menu="@menu/bottom_bar" />
 
     <com.google.android.material.bottomappbar.BottomAppBar
+        android:visibility="gone"
         android:id="@+id/bottom_app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -104,10 +93,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="?fabColor"
+        android:visibility="gone"
         app:layout_anchor="@id/bottom_app_bar"
         app:srcCompat="@drawable/ic_plus_fab"
-        app:tint="#FFFFFF"
-        />
-
+        app:tint="#FFFFFF" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
