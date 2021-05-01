@@ -18,6 +18,7 @@ import com.krayapp.materialpj.ui.main.viewpager.ViewPagerPictureFragment
 import com.krayapp.materialpj.viewmodel.MainViewModel
 import com.krayapp.materialpj.viewmodel.PictureData
 import com.krayapp.materialpj.viewmodel.PictureInfo
+import kotlinx.android.synthetic.main.current_image_viewpager.*
 import kotlinx.android.synthetic.main.main_fragment.*
 import java.text.DateFormat
 import java.text.SimpleDateFormat
