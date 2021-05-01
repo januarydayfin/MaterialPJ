@@ -18,7 +18,6 @@ import com.krayapp.materialpj.ui.main.viewpager.ViewPagerPictureFragment
 import com.krayapp.materialpj.viewmodel.MainViewModel
 import com.krayapp.materialpj.viewmodel.PictureData
 import com.krayapp.materialpj.viewmodel.PictureInfo
-import kotlinx.android.synthetic.main.current_image_viewpager.*
 import kotlinx.android.synthetic.main.main_fragment.*
 import java.text.DateFormat
 import java.text.SimpleDateFormat
@@ -139,7 +138,8 @@ class MainPictureFragment : Fragment() {
                     }
                     true
                 }
-                R.id.app_bar_search -> {
+                R.id.app_bar_youtube -> {
+                    motion_layer.visibility = View.GONE
                     childFragmentManager.apply {
                         beginTransaction()
                             .replace(R.id.main_frag_container, YouTubeFragment.newInstance())
@@ -150,9 +150,21 @@ class MainPictureFragment : Fragment() {
                     true
                 }
                 R.id.app_bar_settings -> {
+                    motion_layer.visibility = View.GONE
                     childFragmentManager.apply {
                         beginTransaction()
                             .replace(R.id.main_frag_container, SettingsFragment.newInstance())
+                            .setTransition((FragmentTransaction.TRANSIT_FRAGMENT_FADE))
+                            .addToBackStack("")
+                            .commitAllowingStateLoss()
+                    }
+                    true
+                }
+                R.id.test_frag_menu ->{
+                    motion_layer.visibility = View.GONE
+                    childFragmentManager.apply {
+                        beginTransaction()
+                            .replace(R.id.main_frag_container, TestFragment.newInstance())
                             .setTransition((FragmentTransaction.TRANSIT_FRAGMENT_FADE))
                             .addToBackStack("")
                             .commitAllowingStateLoss()

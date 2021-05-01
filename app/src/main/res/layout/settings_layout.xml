@@ -45,6 +45,7 @@
             app:singleSelection="true">
 
             <com.google.android.material.chip.Chip
+                android:backgroundTint="@color/color_gray"
                 android:id="@+id/choice_day_theme"
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="match_parent"

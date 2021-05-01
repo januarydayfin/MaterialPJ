@@ -6,77 +6,87 @@
     android:layout_height="match_parent"
     android:background="?attr/background_main">
 
-    <androidx.constraintlayout.motion.widget.MotionLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:id="@+id/main_frag_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layoutDescription="@xml/main_fragment_scene">
+        android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/wiki_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/layout_default_margin"
-            app:layout_constraintBottom_toTopOf="@id/view_pager"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/ic_wikipedia" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_layout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/layout_default_margin"
-            android:hint="@string/search_wiki"
-            android:textColorHint="?wikiIconColor"
-            app:counterEnabled="true"
-            app:counterMaxLength="20"
-            app:counterTextColor="?wikiIconColor"
-            app:endIconCheckable="true"
-            app:endIconDrawable="@drawable/ic_wikipedia"
-            app:endIconMode="custom"
-            app:endIconTint="?wikiIconColor"
-            app:helperText="@string/helper_text"
-            app:helperTextTextColor="?wikiIconColor"
-            app:layout_constraintBottom_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/input_edit_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/view_pager"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/wiki_button">
-
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tab_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="?background_main"
-                app:tabMode="scrollable" />
-        </androidx.viewpager.widget.ViewPager>
-
-        <me.relex.circleindicator.CircleIndicator
-            android:id="@+id/indicator"
+        <androidx.constraintlayout.motion.widget.MotionLayout
+            android:id="@+id/motion_layer"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            app:ci_drawable="?textColor"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/input_layout"
-            app:layout_constraintVertical_bias="0.79" />
+            android:layout_height="match_parent"
+            app:layoutDescription="@xml/main_fragment_scene">
 
-    </androidx.constraintlayout.motion.widget.MotionLayout>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/wiki_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/layout_default_margin"
+                app:layout_constraintBottom_toTopOf="@id/view_pager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/ic_wikipedia" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/layout_default_margin"
+                android:hint="@string/search_wiki"
+                android:textColorHint="?wikiIconColor"
+                app:counterEnabled="true"
+                app:counterMaxLength="20"
+                app:counterTextColor="?wikiIconColor"
+                app:endIconCheckable="true"
+                app:endIconDrawable="@drawable/ic_wikipedia"
+                app:endIconMode="custom"
+                app:endIconTint="?wikiIconColor"
+                app:helperText="@string/helper_text"
+                app:helperTextTextColor="?wikiIconColor"
+                app:layout_constraintBottom_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/input_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/view_pager"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/wiki_button">
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tab_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="?background_main"
+                    app:tabMode="scrollable" />
+            </androidx.viewpager.widget.ViewPager>
+
+            <me.relex.circleindicator.CircleIndicator
+                android:id="@+id/indicator"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                app:ci_drawable="?textColor"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input_layout"
+                app:layout_constraintVertical_bias="0.79" />
+
+        </androidx.constraintlayout.motion.widget.MotionLayout>
+
+    </LinearLayout>
+
+
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

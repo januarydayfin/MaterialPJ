@@ -2,18 +2,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/app_bar_home"
-        android:icon="@android:drawable/ic_menu_directions"
+        android:icon="@drawable/ic_icons8_home"
+        android:iconTint="@color/light_font_color"
         android:title="@string/home"
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/app_bar_search"
-        android:icon="@drawable/ic_search"
+        android:id="@+id/app_bar_youtube"
+        android:icon="@drawable/ic_icons8_youtube"
         android:title="@string/search"
+        android:iconTint="@color/light_font_color"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/app_bar_settings"
         android:icon="@drawable/ic_settings_menu"
         android:title="@string/settings"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/test_frag_menu"
+        android:icon="@drawable/ic_flask"
+        android:title="@string/test"
         app:showAsAction="ifRoom" />
 </menu>
