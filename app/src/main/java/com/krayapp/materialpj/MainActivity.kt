@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.app_bar_home -> Toast.makeText(this, "Favorite", Toast.LENGTH_SHORT).show()
-            R.id.app_bar_search -> Toast.makeText(this, "Search", Toast.LENGTH_SHORT).show()
+            R.id.app_bar_youtube -> Toast.makeText(this, "Search", Toast.LENGTH_SHORT).show()
             R.id.app_bar_settings -> {
                 supportFragmentManager.apply {
                     beginTransaction()
