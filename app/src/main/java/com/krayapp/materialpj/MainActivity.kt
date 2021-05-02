@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
             R.id.app_bar_settings -> {
                 supportFragmentManager.apply {
                     beginTransaction()
-                        .replace(R.id.main_frag_container, SettingsFragment.newInstance())
+                        .replace(R.id.motion_layer, SettingsFragment.newInstance())
                         .setTransition((FragmentTransaction.TRANSIT_FRAGMENT_FADE))
                         .addToBackStack("")
                         .commitAllowingStateLoss()
