@@ -28,8 +28,8 @@ open class ViewPagerPictureFragment(private val pictureInfo: PictureInfo) : Frag
         return inflater.inflate(R.layout.current_image_viewpager, container, false)
     }
 
-    fun getTitle(): String? {
-        return pictureInfo.title
+    fun getWhattaDay(): String? {
+        return pictureInfo.whattaday
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

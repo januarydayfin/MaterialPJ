@@ -77,7 +77,8 @@ class MainPictureFragment : Fragment() {
                 val date = serverResponse.date
                 val mediaType = serverResponse.mediaType
                 val hdurl = serverResponse.hdurl
-                val pictureInfo = PictureInfo(date, explanation, mediaType, title, url, hdurl)
+                val whattaday = data.whattaDay
+                val pictureInfo = PictureInfo(date, explanation, mediaType, title, url, hdurl,whattaday)
                 if (url.isNullOrEmpty()) {
                     Toast.makeText(context, "Нет данных", Toast.LENGTH_SHORT).show()
                 } else {
@@ -101,15 +102,22 @@ class MainPictureFragment : Fragment() {
         val cal: Calendar = Calendar.getInstance()
         var date: String? = null
         var i = 0
+        var whattaDay: String? = null
         while (i >= -2) {
             if (i == 0) {
                 date = null
+                whattaDay = "Today"
             } else {
+                if(i == -1){
+                    whattaDay = "Yesterday"
+                }else{
+                    whattaDay = "Yeyestarday"
+                }
                 cal.add(Calendar.DATE, i)
                 date = dateFormat.format(cal.time)
             }
             i--
-            viewModel.getLiveData(date).observe(
+            viewModel.getLiveData(date, whattaDay).observe(
                 viewLifecycleOwner,
                 Observer { renderData(it) })
         }
@@ -117,12 +125,12 @@ class MainPictureFragment : Fragment() {
     }
 
 
-
     private fun setBottomAppBar(view: View) {
         val context = activity as MainActivity
         context.setSupportActionBar(view.findViewById(R.id.bottom_app_bar))
         setHasOptionsMenu(true)
     }
+
     private fun setNavigationButton() {
         bottom_navigation_view.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
@@ -158,7 +166,7 @@ class MainPictureFragment : Fragment() {
                     }
                     true
                 }
-                R.id.test_frag_menu ->{
+                R.id.test_frag_menu -> {
                     motion_layer.visibility = View.GONE
                     childFragmentManager.apply {
                         beginTransaction()
@@ -173,7 +181,8 @@ class MainPictureFragment : Fragment() {
             }
         }
     }
-    private fun setCircleIndicator(){
+
+    private fun setCircleIndicator() {
         indicator.setViewPager(view_pager)
         view_pager.adapter?.registerDataSetObserver(indicator.dataSetObserver)
     }

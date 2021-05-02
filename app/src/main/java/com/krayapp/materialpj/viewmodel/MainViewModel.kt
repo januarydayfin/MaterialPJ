@@ -16,12 +16,12 @@ class MainViewModel(
     private val liveDataForViewToObserve: MutableLiveData<PictureData> = MutableLiveData(),
     private val retrofitImpl: RetrofitImpl = RetrofitImpl()
 ) : ViewModel() {
-    fun getLiveData(date:String?): LiveData<PictureData> {
-        sendServerRequest(date)
+    fun getLiveData(date:String?, whattaDay:String?): LiveData<PictureData> {
+        sendServerRequest(date, whattaDay)
         return liveDataForViewToObserve
     }
 
-    private fun sendServerRequest(date:String?) {
+    private fun sendServerRequest(date:String?, whattaDay:String?) {
         liveDataForViewToObserve.value = PictureData.Loading(null)
         val apiKey: String = BuildConfig.NASA_API_KEY
         if (apiKey.isBlank()) {
@@ -35,7 +35,7 @@ class MainViewModel(
                         response: Response<ResponseData>
                     ) {
                         if (response.isSuccessful && response.body() != null) {
-                            liveDataForViewToObserve.value = PictureData.Success(response.body()!!)
+                            liveDataForViewToObserve.value = PictureData.Success(response.body()!!,whattaDay)
                         } else {
                             val message = response.message()
                             if (message.isNullOrEmpty()) {

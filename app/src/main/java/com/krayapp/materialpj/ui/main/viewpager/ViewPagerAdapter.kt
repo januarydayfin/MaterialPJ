@@ -16,7 +16,7 @@ class ViewPagerAdapter(
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
-        return fragList[position].getTitle()
+        return fragList[position].getWhattaDay()
     }
 
     override fun getItem(position: Int): Fragment {
