@@ -4,8 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
+import androidx.transition.ChangeBounds
+import androidx.transition.ChangeImageTransform
+import androidx.transition.TransitionManager
+import androidx.transition.TransitionSet
 import coil.api.load
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.youtube.player.YouTubeBaseActivity
@@ -13,13 +19,19 @@ import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
 import com.krayapp.materialpj.BuildConfig
 import com.krayapp.materialpj.R
+import com.krayapp.materialpj.SquareImage
+import com.krayapp.materialpj.Toast
 import com.krayapp.materialpj.viewmodel.PictureInfo
 import kotlinx.android.synthetic.main.bottom_sheet_layout.*
 import kotlinx.android.synthetic.main.current_image_viewpager.*
 import kotlinx.android.synthetic.main.main_fragment.*
 
-open class ViewPagerPictureFragment(private val pictureInfo: PictureInfo) : Fragment(){
+open class ViewPagerPictureFragment(private val pictureInfo: PictureInfo) : Fragment() {
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
+
+    companion object {
+        var isExpanded = false
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,15 +40,16 @@ open class ViewPagerPictureFragment(private val pictureInfo: PictureInfo) : Frag
         return inflater.inflate(R.layout.current_image_viewpager, container, false)
     }
 
-    fun getTitle(): String? {
-        return pictureInfo.title
+    fun getWhattaDay(): String? {
+        return pictureInfo.whattaday
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         setImage()
         setExplanation()
         setBottomSheetBehavior(bottom_sheet_container)
-        super.onViewCreated(view, savedInstanceState)
+        imageClickListener()
     }
 
     private fun setImage() {
@@ -55,4 +68,22 @@ open class ViewPagerPictureFragment(private val pictureInfo: PictureInfo) : Frag
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
     }
+
+    private fun imageClickListener() {
+        PODImage.setOnClickListener {
+            isExpanded = !isExpanded
+            TransitionManager.beginDelayedTransition(
+                current_image_layout, TransitionSet()
+                    .addTransition(ChangeBounds())
+                    .addTransition(ChangeImageTransform())
+            )
+            val params: ViewGroup.LayoutParams = PODImage.layoutParams
+            params.height =
+                if (isExpanded) ViewGroup.LayoutParams.MATCH_PARENT else ViewGroup.LayoutParams.WRAP_CONTENT
+            PODImage.layoutParams = params
+            PODImage.scaleType =
+                if (isExpanded) ImageView.ScaleType.CENTER_CROP else ImageView.ScaleType.FIT_CENTER
+        }
+    }
 }
+

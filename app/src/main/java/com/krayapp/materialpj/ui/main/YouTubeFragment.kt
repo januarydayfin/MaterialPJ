@@ -22,7 +22,7 @@ class YouTubeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         webview_player_view.settings.javaScriptEnabled = true
-        webview_player_view.loadUrl("https://www.youtube.com/embed/YE7VzlLtp-4")
+        webview_player_view.loadUrl("https://www.youtube.com/embed/dQw4w9WgXcQ")
         super.onViewCreated(view, savedInstanceState)
     }
 }

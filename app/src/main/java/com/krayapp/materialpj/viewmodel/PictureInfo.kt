@@ -6,5 +6,6 @@ data class PictureInfo(
     val mediaType: String?,
     val title: String?,
     val url: String?,
-    val hdurl: String?
+    val hdurl: String?,
+    val whattaday:String?
 )

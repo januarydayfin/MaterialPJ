@@ -6,9 +6,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:id="@+id/current_image_layout">
 
-        <com.krayapp.materialpj.SquareImage
+        <ImageView
             android:id="@+id/PODImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
