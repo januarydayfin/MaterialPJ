@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.krayapp.materialpj.R
 import com.krayapp.materialpj.collapsing.Collapsing
-import com.krayapp.materialpj.ui.main.notes.NoteActivity
+import com.krayapp.materialpj.ui.main.notes.NoteFragment
+import kotlinx.android.synthetic.main.main_fragment.*
 import kotlinx.android.synthetic.main.test_fragment_layout.*
 
 class TestFragment:Fragment() {
@@ -34,7 +36,14 @@ class TestFragment:Fragment() {
             startActivity(Intent(context, Collapsing::class.java))
         }
         notesActivity.setOnClickListener{
-            startActivity(Intent(context, NoteActivity::class.java))
+            parentFragmentManager.apply {
+                beginTransaction()
+                    .replace(R.id.motion_layer, NoteFragment.newInstance())
+                    .setTransition((FragmentTransaction.TRANSIT_FRAGMENT_FADE))
+                    .addToBackStack("")
+                    .commitAllowingStateLoss()
+            }
+            /*startActivity(Intent(context, NoteActivity::class.java))*/
         }
     }
 }

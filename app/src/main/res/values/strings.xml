@@ -109,4 +109,6 @@
     <string name="click_to_see_next">Click to see NEXT</string>
     <string name="start_a_motion">Start a Motion!</string>
     <string name="start_notes">Start Notes</string>
+    <string name="favorite">Favorite</string>
+    <string name="add">Add</string>
 </resources>

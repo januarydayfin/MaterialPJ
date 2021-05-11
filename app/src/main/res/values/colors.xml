@@ -9,6 +9,8 @@
     <color name="night_background_color">#252525</color>
     <color name="day_bottomsheet_color">#E3B991</color>
     <color name="night_bottomsheet_color">#404977</color>
+    <color name="sandwich_dark_color">#663b4351</color>
+    <color name="sandwich_light_color">#8C8C8C</color>
     <color name="fab_color_light">#2196F3</color>
     <color name="fab_color_dark">#BF124D</color>
     <color name="light_font_color">#C6FFFFFF</color>

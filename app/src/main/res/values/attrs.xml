@@ -7,4 +7,5 @@
     <attr name="centerWikiIcon" format="reference" />
     <attr name="textColor" format="reference" />
     <attr name="bottomSheetColor" format="reference"/>
+    <attr name="sandwichColor" format="reference"/>
 </resources>

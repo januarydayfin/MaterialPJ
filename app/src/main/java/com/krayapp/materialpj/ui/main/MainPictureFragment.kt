@@ -31,6 +31,7 @@ class MainPictureFragment : Fragment() {
         var visible = false
         fun newInstance() = MainPictureFragment()
     }
+
     private var fragListForAdapter: MutableList<ViewPagerPictureFragment> = mutableListOf()
     private lateinit var viewModel: MainViewModel
 
@@ -59,7 +60,7 @@ class MainPictureFragment : Fragment() {
         setCircleIndicator()
         setBottomAppBar(view)
         wikiBtnClickListener()
-        startChip.setOnClickListener { viewPageVisible() }
+        viewPageVisible()
     }
 
 
@@ -129,7 +130,12 @@ class MainPictureFragment : Fragment() {
                 R.id.app_bar_home -> {
                     childFragmentManager.apply {
                         beginTransaction()
-                            .replace(R.id.motion_layer, MainPictureFragment.newInstance())
+                            .replace(
+                                R.id.motion_layer,
+                                MainPictureFragment.newInstance(),
+                                "MainPicture"
+                            )
+                            .setCustomAnimations(R.anim.slide_in, R.anim.fade_out)
                             .setTransition((FragmentTransaction.TRANSIT_FRAGMENT_FADE))
                             .addToBackStack("")
                             .commitAllowingStateLoss()
@@ -140,7 +146,8 @@ class MainPictureFragment : Fragment() {
 //                    motion_layer.visibility = View.GONE
                     childFragmentManager.apply {
                         beginTransaction()
-                            .replace(R.id.motion_layer, YouTubeFragment.newInstance())
+                            .setCustomAnimations(R.anim.slide_in, R.anim.fade_out)
+                            .replace(R.id.motion_layer, YouTubeFragment.newInstance(), "Youtube")
                             .setTransition((FragmentTransaction.TRANSIT_FRAGMENT_FADE))
                             .addToBackStack("")
                             .commitAllowingStateLoss()
@@ -151,7 +158,8 @@ class MainPictureFragment : Fragment() {
 //                    motion_layer.visibility = View.GONE
                     childFragmentManager.apply {
                         beginTransaction()
-                            .replace(R.id.motion_layer, SettingsFragment.newInstance())
+                            .setCustomAnimations(R.anim.slide_in, R.anim.fade_out)
+                            .replace(R.id.motion_layer, SettingsFragment.newInstance(), "Settings")
                             .setTransition((FragmentTransaction.TRANSIT_FRAGMENT_FADE))
                             .addToBackStack("")
                             .commitAllowingStateLoss()
@@ -162,7 +170,8 @@ class MainPictureFragment : Fragment() {
 //                    viewPageVisible()
                     childFragmentManager.apply {
                         beginTransaction()
-                            .replace(R.id.motion_layer, TestFragment.newInstance())
+                            .setCustomAnimations(R.anim.slide_in, R.anim.fade_out)
+                            .replace(R.id.motion_layer, TestFragment.newInstance(), "Test")
                             .setTransition((FragmentTransaction.TRANSIT_FRAGMENT_FADE))
                             .addToBackStack("")
                             .commitAllowingStateLoss()

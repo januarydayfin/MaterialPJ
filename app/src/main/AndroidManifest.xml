@@ -17,7 +17,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".collapsing.Collapsing"/>
-        <activity android:name=".ui.main.notes.NoteActivity"/>
     </application>
 
 </manifest>
