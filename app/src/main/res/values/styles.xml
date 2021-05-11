@@ -18,6 +18,7 @@
         <item name="background_main">@color/day_background_color</item>
         <item name="textColor">@color/dark_font_color</item>
         <item name="wikiIconColor">@color/dark_font_color</item>
+        <item name="centerWikiIcon">@drawable/ic_wikipedia</item>
         <item name="bottomSheetColor">@color/day_bottomsheet_color</item>
     </style>
 
@@ -31,6 +32,7 @@
         <item name="android:textColor">@color/light_font_color</item>
         <item name="textColor">@color/light_font_color</item>
         <item name="wikiIconColor">@color/light_font_color</item>
+        <item name="centerWikiIcon">@drawable/ic_wikipedia_light</item>
         <item name="bottomSheetColor">@color/night_bottomsheet_color</item>
     </style>
 
@@ -43,6 +45,7 @@
         <item name="background_main">@drawable/moon_background</item>
         <item name="android:textColor">@color/light_font_color</item>
         <item name="textColor">@color/light_font_color</item>
+        <item name="centerWikiIcon">@drawable/ic_wikipedia_light</item>
         <item name="bottomSheetColor">@color/night_bottomsheet_color</item>
         <item name="wikiIconColor">@color/light_font_color</item>
     </style>
@@ -55,6 +58,7 @@
         <item name="bottomAppBarColor">@color/bottom_app_bar_light</item>
         <item name="background_main">@drawable/mars_background</item>
         <item name="textColor">@color/dark_font_color</item>
+        <item name="centerWikiIcon">@drawable/ic_wikipedia</item>
         <item name="wikiIconColor">@color/dark_font_color</item>
         <item name="bottomSheetColor">@color/day_bottomsheet_color</item>
     </style>

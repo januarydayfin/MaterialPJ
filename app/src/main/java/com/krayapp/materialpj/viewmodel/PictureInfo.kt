@@ -1,5 +1,9 @@
 package com.krayapp.materialpj.viewmodel
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class PictureInfo(
     val date: String?,
     val explanation: String?,
@@ -8,4 +12,4 @@ data class PictureInfo(
     val url: String?,
     val hdurl: String?,
     val whattaday:String?
-)
+):Parcelable

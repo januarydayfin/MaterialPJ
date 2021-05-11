@@ -10,7 +10,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.constraintlayout.widget.ConstraintSet
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
@@ -28,13 +27,13 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class MainPictureFragment : Fragment() {
-    private var fragListForAdapter: MutableList<ViewPagerPictureFragment> = mutableListOf()
-
     companion object {
         var visible = false
         fun newInstance() = MainPictureFragment()
     }
 
+
+    private var fragListForAdapter: MutableList<ViewPagerPictureFragment> = mutableListOf()
     private lateinit var viewModel: MainViewModel
 
     override fun onCreateView(
@@ -83,7 +82,7 @@ class MainPictureFragment : Fragment() {
                 if (url.isNullOrEmpty()) {
                     Toast.makeText(context, "Нет данных", Toast.LENGTH_SHORT).show()
                 } else {
-                    fragListForAdapter.add(ViewPagerPictureFragment(pictureInfo))
+                    fragListForAdapter.add(ViewPagerPictureFragment.newInstance(pictureInfo))
                 }
             }
             is PictureData.Error -> {

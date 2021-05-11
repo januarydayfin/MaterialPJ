@@ -45,9 +45,9 @@
             app:singleSelection="true">
 
             <com.google.android.material.chip.Chip
-                android:backgroundTint="@color/color_gray"
+                android:backgroundTint="?fabColor"
                 android:id="@+id/choice_day_theme"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:tag="day"
@@ -55,8 +55,9 @@
                 android:textAlignment="center" />
 
             <com.google.android.material.chip.Chip
+                android:backgroundTint="?fabColor"
                 android:id="@+id/choice_night_theme"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:tag="night"
@@ -64,8 +65,9 @@
                 android:textAlignment="center" />
 
             <com.google.android.material.chip.Chip
+                android:backgroundTint="?fabColor"
                 android:id="@+id/choice_moon_theme"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:tag="moon"
@@ -73,8 +75,9 @@
                 android:textAlignment="center" />
 
             <com.google.android.material.chip.Chip
+                android:backgroundTint="?fabColor"
                 android:id="@+id/choice_mars_theme"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:tag="mars"
