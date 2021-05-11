@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.krayapp.materialpj.R
 import com.krayapp.materialpj.collapsing.Collapsing
+import com.krayapp.materialpj.ui.main.notes.NoteActivity
 import kotlinx.android.synthetic.main.test_fragment_layout.*
 
 class TestFragment:Fragment() {
@@ -31,6 +32,9 @@ class TestFragment:Fragment() {
     private fun chipClickListener(){
         collapsing.setOnClickListener{
             startActivity(Intent(context, Collapsing::class.java))
+        }
+        notesActivity.setOnClickListener{
+            startActivity(Intent(context, NoteActivity::class.java))
         }
     }
 }

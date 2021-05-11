@@ -28,11 +28,11 @@ import kotlinx.android.synthetic.main.current_image_viewpager.*
 import kotlinx.android.synthetic.main.main_fragment.*
 
 class ViewPagerPictureFragment : Fragment() {
-    private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
     private var pictureInfo: PictureInfo? = null
-    companion object {
-        const val PAGER_KEY = "PAGER_KEY"
+    private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
 
+    companion object {
+        private const val PAGER_KEY = "PAGER_KEY"
         fun newInstance(pictureInfo: PictureInfo): ViewPagerPictureFragment {
             val newFrag = ViewPagerPictureFragment()
             val bundle = Bundle()
@@ -40,13 +40,15 @@ class ViewPagerPictureFragment : Fragment() {
             newFrag.arguments = bundle
             return newFrag
         }
+
         var isExpanded = false
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        pictureInfo = arguments?.getParcelable(PAGER_KEY)
+        this.pictureInfo = arguments?.getParcelable(PAGER_KEY)
         super.onCreate(savedInstanceState)
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -82,7 +84,6 @@ class ViewPagerPictureFragment : Fragment() {
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
     }
-
     private fun imageClickListener() {
         PODImage.setOnClickListener {
             isExpanded = !isExpanded
