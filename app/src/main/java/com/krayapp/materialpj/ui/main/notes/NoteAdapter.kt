@@ -18,7 +18,9 @@ class NoteAdapter(
     private var clickListener: MyClickListener,
     private val dragListener: OnStartDragListener
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>(), NoteFragment.ItemTouchHelperAdapter {
-
+    companion object{
+        private var favSort:Boolean = false
+    }
     override fun onItemMove(fromPosition: Int, toPosition: Int) {
         data.removeAt(fromPosition).apply {
             data.add(if (toPosition > fromPosition) toPosition - 1 else toPosition, this)
@@ -43,10 +45,13 @@ class NoteAdapter(
     }
 
     fun sortByFav() {
-        data.sortBy { !it.first.favouriteFlag }
+        favSort = !favSort
+        if (favSort){
+            data.sortBy { !it.first.favouriteFlag }
+        }else{
+            data.sortBy { it.first.title }
+        }
         notifyDataSetChanged()
-//        var newData = data.sortBy { !it.first.favouriteFlag }
-
     }
 
     fun appendItem() {
