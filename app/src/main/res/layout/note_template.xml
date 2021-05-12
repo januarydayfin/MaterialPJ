@@ -42,16 +42,26 @@
 
 
         <EditText
-            android:id="@+id/descriptionList"
+            android:id="@+id/titleNote"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/layout_default_margin"
             android:layout_marginStart="140dp"
-            android:layout_marginTop="16dp"
             android:textAlignment="textStart"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/descriptionNote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/layout_default_margin"
+            android:textAlignment="textStart"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleNote"
+            android:visibility="gone"
             tools:text="description" />
+
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/favFlag"
@@ -60,9 +70,17 @@
             android:layout_gravity="end"
             android:layout_margin="@dimen/cardMargin"
             android:src="@drawable/ic_staroff"
-            app:layout_constraintBottom_toBottomOf="@+id/descriptionList"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/descriptionList" />
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/deleteNoteChip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_trash"
+            app:layout_constraintEnd_toEndOf="@+id/favFlag"
+            app:layout_constraintTop_toBottomOf="@id/favFlag"
+            app:layout_constraintStart_toStartOf="@+id/favFlag" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
