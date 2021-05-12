@@ -28,7 +28,7 @@
 
         <com.google.android.material.chip.Chip
             android:layout_margin="@dimen/layout_default_margin"
-            android:id="@+id/AddChip"
+            android:id="@+id/addChip"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="@string/add"

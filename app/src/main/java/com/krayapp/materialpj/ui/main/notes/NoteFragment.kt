@@ -15,6 +15,7 @@ class NoteFragment : Fragment() {
     companion object {
         fun newInstance() = NoteFragment()
     }
+
     lateinit var itemTouchHelper: ItemTouchHelper
     private val adapter = NoteAdapter(mutableListOf(
         Pair(NotesData("Почесать кота", "Надо котю причесать, тутутуту", false), false),
@@ -31,7 +32,7 @@ class NoteFragment : Fragment() {
         override fun onClick(notesData: NotesData) {
             Toast.makeText(context, notesData.description, Toast.LENGTH_SHORT).show()
         }
-    }, object : NoteAdapter.OnStartDragListener{
+    }, object : NoteAdapter.OnStartDragListener {
         override fun onStartDrag(viewHolder: RecyclerView.ViewHolder) {
             itemTouchHelper.startDrag(viewHolder)
         }
@@ -55,8 +56,11 @@ class NoteFragment : Fragment() {
     }
 
     private fun addButtonListener() {
-        AddChip.setOnClickListener {
+        addChip.setOnClickListener {
             adapter.appendItem()
+        }
+        favoriteChip.setOnClickListener {
+            adapter.sortByFav()
         }
     }
 

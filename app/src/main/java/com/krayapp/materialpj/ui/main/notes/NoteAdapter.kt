@@ -1,5 +1,6 @@
 package com.krayapp.materialpj.ui.main.notes
 
+import android.annotation.SuppressLint
 import android.view.KeyEvent.ACTION_DOWN
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -7,6 +8,7 @@ import android.view.MotionEvent.ACTION_DOWN
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.MotionEventCompat
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.krayapp.materialpj.R
 import kotlinx.android.synthetic.main.note_template.view.*
@@ -28,6 +30,7 @@ class NoteAdapter(
         data.removeAt(position)
         notifyItemRemoved(position)
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return NotesViewHolder(
@@ -35,8 +38,28 @@ class NoteAdapter(
         )
     }
 
+    private fun setData(newData: MutableList<Pair<NotesData, Boolean>>) {
+        this.data = newData
+    }
+
+    fun sortByFav() {
+        data.sortBy { !it.first.favouriteFlag }
+        notifyDataSetChanged()
+//        var newData = data.sortBy { !it.first.favouriteFlag }
+
+    }
+
     fun appendItem() {
-        data.add(itemCount, Pair(NotesData("Hello","Simple hello some text, for test our description edit text", true ), false))
+        data.add(
+            itemCount,
+            Pair(
+                NotesData(
+                    "Hello",
+                    "Simple hello some text, for test our description edit text",
+                    true
+                ), false
+            )
+        )
         notifyItemInserted(itemCount)
     }
 
@@ -49,10 +72,11 @@ class NoteAdapter(
         return data.size
     }
 
-    inner class NotesViewHolder(view: View) : RecyclerView.ViewHolder(view), NoteFragment.ItemTouchHelperViewHolder {
+    inner class NotesViewHolder(view: View) : RecyclerView.ViewHolder(view),
+        NoteFragment.ItemTouchHelperViewHolder {
+        @SuppressLint("ClickableViewAccessibility")
         fun onBind(notesData: Pair<NotesData, Boolean>) {
-            itemView.bottom_drag_sandwich.setOnTouchListener {
-                _, event ->
+            itemView.bottom_drag_sandwich.setOnTouchListener { _, event ->
                 if (MotionEventCompat.getActionMasked(event) == MotionEvent.ACTION_DOWN) {
                     dragListener.onStartDrag(this)
                 }
@@ -66,8 +90,8 @@ class NoteAdapter(
             } else {
                 itemView.favFlag.setImageResource(R.drawable.ic_staroff)
             }
-            itemView.descriptionNote.visibility = if(notesData.second) View.VISIBLE else View.GONE
-            itemView.titleNote.setOnClickListener{
+            itemView.descriptionNote.visibility = if (notesData.second) View.VISIBLE else View.GONE
+            itemView.titleNote.setOnClickListener {
                 toggleText()
             }
 
@@ -110,9 +134,12 @@ class NoteAdapter(
         }
 
     }
+
+
     interface OnStartDragListener {
         fun onStartDrag(viewHolder: RecyclerView.ViewHolder)
     }
+
     interface MyClickListener {
         fun onClick(notesData: NotesData)
     }
