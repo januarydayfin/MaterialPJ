@@ -22,6 +22,7 @@ class MainViewModel(
     }
 
     private fun sendServerRequest(date:String?, whattaDay:String?) {
+
         liveDataForViewToObserve.value = PictureData.Loading(null)
         val apiKey: String = BuildConfig.NASA_API_KEY
         if (apiKey.isBlank()) {
@@ -35,7 +36,7 @@ class MainViewModel(
                         response: Response<ResponseData>
                     ) {
                         if (response.isSuccessful && response.body() != null) {
-                            liveDataForViewToObserve.value = PictureData.Success(response.body()!!,whattaDay)
+                            liveDataForViewToObserve.value = PictureData.Success(response.body()!!, whattaDay)
                         } else {
                             val message = response.message()
                             if (message.isNullOrEmpty()) {

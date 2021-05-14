@@ -16,11 +16,12 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="?textColor"
                 android:text="@string/settings_title"
+                android:textColor="?textColor"
                 android:textSize="@dimen/title_size" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -45,41 +46,44 @@
             app:singleSelection="true">
 
             <com.google.android.material.chip.Chip
-                android:backgroundTint="@color/color_gray"
                 android:id="@+id/choice_day_theme"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:tag="day"
                 android:text="@string/day_theme"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                app:chipBackgroundColor="?fabColor" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/choice_night_theme"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:tag="night"
                 android:text="@string/night_theme"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                app:chipBackgroundColor="?fabColor" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/choice_moon_theme"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:tag="moon"
                 android:text="@string/moon_theme"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                app:chipBackgroundColor="?fabColor" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/choice_mars_theme"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:tag="mars"
                 android:text="@string/mars_theme"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                app:chipBackgroundColor="?fabColor" />
         </com.google.android.material.chip.ChipGroup>
 
         <com.google.android.material.button.MaterialButton

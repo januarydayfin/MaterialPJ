@@ -46,7 +46,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/motion_layer"
-            app:srcCompat="@drawable/ic_wikipedia" />
+            app:srcCompat="?centerWikiIcon" />
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -91,8 +91,8 @@
                 android:id="@+id/tab_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="?background_main"
-                app:tabMode="scrollable" />
+                android:backgroundTint="@android:color/transparent"
+                />
         </androidx.viewpager.widget.ViewPager>
 
         <me.relex.circleindicator.CircleIndicator

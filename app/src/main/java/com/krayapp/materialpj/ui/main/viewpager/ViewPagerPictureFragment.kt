@@ -21,16 +21,32 @@ import com.krayapp.materialpj.BuildConfig
 import com.krayapp.materialpj.R
 import com.krayapp.materialpj.SquareImage
 import com.krayapp.materialpj.Toast
+import com.krayapp.materialpj.ui.main.MainPictureFragment
 import com.krayapp.materialpj.viewmodel.PictureInfo
 import kotlinx.android.synthetic.main.bottom_sheet_layout.*
 import kotlinx.android.synthetic.main.current_image_viewpager.*
 import kotlinx.android.synthetic.main.main_fragment.*
 
-open class ViewPagerPictureFragment(private val pictureInfo: PictureInfo) : Fragment() {
+class ViewPagerPictureFragment : Fragment() {
+    private var pictureInfo: PictureInfo? = null
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
 
     companion object {
+        private const val PAGER_KEY = "PAGER_KEY"
+        fun newInstance(pictureInfo: PictureInfo): ViewPagerPictureFragment {
+            val newFrag = ViewPagerPictureFragment()
+            val bundle = Bundle()
+            bundle.putParcelable(PAGER_KEY, pictureInfo)
+            newFrag.arguments = bundle
+            return newFrag
+        }
+
         var isExpanded = false
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        this.pictureInfo = arguments?.getParcelable(PAGER_KEY)
+        super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(
@@ -41,7 +57,7 @@ open class ViewPagerPictureFragment(private val pictureInfo: PictureInfo) : Frag
     }
 
     fun getWhattaDay(): String? {
-        return pictureInfo.whattaday
+        return pictureInfo?.whattaday
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -53,22 +69,21 @@ open class ViewPagerPictureFragment(private val pictureInfo: PictureInfo) : Frag
     }
 
     private fun setImage() {
-        PODImage.load(pictureInfo.url) {
+        PODImage.load(pictureInfo?.url) {
             lifecycle(viewLifecycleOwner)
             error(R.drawable.error)
         }
     }
 
     private fun setExplanation() {
-        bottom_sheet_description_header.text = pictureInfo.title
-        bottom_sheet_description.text = pictureInfo.explanation
+        bottom_sheet_description_header.text = pictureInfo?.title
+        bottom_sheet_description.text = pictureInfo?.explanation
     }
 
     private fun setBottomSheetBehavior(bottomSheet: ConstraintLayout) {
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
     }
-
     private fun imageClickListener() {
         PODImage.setOnClickListener {
             isExpanded = !isExpanded

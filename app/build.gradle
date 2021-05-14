@@ -50,8 +50,6 @@ android {
 }
 
 dependencies {
-    //YouTube
-    implementation files('libs/YouTubeAndroidPlayerApi.jar')
     //AndroidX
     implementation 'androidx.preference:preference:1.1.1'
     //CircleIndicator

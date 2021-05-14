@@ -10,7 +10,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.constraintlayout.widget.ConstraintSet
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
@@ -28,13 +27,12 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class MainPictureFragment : Fragment() {
-    private var fragListForAdapter: MutableList<ViewPagerPictureFragment> = mutableListOf()
-
     companion object {
         var visible = false
         fun newInstance() = MainPictureFragment()
     }
 
+    private var fragListForAdapter: MutableList<ViewPagerPictureFragment> = mutableListOf()
     private lateinit var viewModel: MainViewModel
 
     override fun onCreateView(
@@ -62,7 +60,7 @@ class MainPictureFragment : Fragment() {
         setCircleIndicator()
         setBottomAppBar(view)
         wikiBtnClickListener()
-        startChip.setOnClickListener{viewPageVisible()}
+        viewPageVisible()
     }
 
 
@@ -83,7 +81,7 @@ class MainPictureFragment : Fragment() {
                 if (url.isNullOrEmpty()) {
                     Toast.makeText(context, "Нет данных", Toast.LENGTH_SHORT).show()
                 } else {
-                    fragListForAdapter.add(ViewPagerPictureFragment(pictureInfo))
+                    fragListForAdapter.add(ViewPagerPictureFragment.newInstance(pictureInfo))
                 }
             }
             is PictureData.Error -> {
@@ -101,27 +99,22 @@ class MainPictureFragment : Fragment() {
         val dateFormat: DateFormat = SimpleDateFormat("yyyy-MM-dd")
         val cal: Calendar = Calendar.getInstance()
         var date: String? = null
-        var i = 0
-        var whattaDay: String? = null
+        var i = -1
+        var whattaDay: String? = "Today"
+        viewModel.getLiveData(date, whattaDay).observe(
+            viewLifecycleOwner,
+            Observer { renderData(it) })
         while (i >= -2) {
-            if (i == 0) {
-                date = null
-                whattaDay = "Today"
+            if (i == -1) {
+                whattaDay = "Yesterday"
             } else {
-                if (i == -1) {
-                    whattaDay = "Yesterday"
-                } else {
-                    whattaDay = "Yeyestarday"
-                }
-                cal.add(Calendar.DATE, i)
-                date = dateFormat.format(cal.time)
+                whattaDay = "Yeyestarday"
             }
+            cal.add(Calendar.DATE, i)
+            date = dateFormat.format(cal.time)
+            viewModel.getLiveData(date, whattaDay)
             i--
-            viewModel.getLiveData(date, whattaDay).observe(
-                viewLifecycleOwner,
-                Observer { renderData(it) })
         }
-
     }
 
 
@@ -137,7 +130,12 @@ class MainPictureFragment : Fragment() {
                 R.id.app_bar_home -> {
                     childFragmentManager.apply {
                         beginTransaction()
-                            .replace(R.id.motion_layer, MainPictureFragment.newInstance())
+                            .replace(
+                                R.id.motion_layer,
+                                MainPictureFragment.newInstance(),
+                                "MainPicture"
+                            )
+                            .setCustomAnimations(R.anim.slide_in, R.anim.fade_out)
                             .setTransition((FragmentTransaction.TRANSIT_FRAGMENT_FADE))
                             .addToBackStack("")
                             .commitAllowingStateLoss()
@@ -148,7 +146,8 @@ class MainPictureFragment : Fragment() {
 //                    motion_layer.visibility = View.GONE
                     childFragmentManager.apply {
                         beginTransaction()
-                            .replace(R.id.motion_layer, YouTubeFragment.newInstance())
+                            .setCustomAnimations(R.anim.slide_in, R.anim.fade_out)
+                            .replace(R.id.motion_layer, YouTubeFragment.newInstance(), "Youtube")
                             .setTransition((FragmentTransaction.TRANSIT_FRAGMENT_FADE))
                             .addToBackStack("")
                             .commitAllowingStateLoss()
@@ -159,7 +158,8 @@ class MainPictureFragment : Fragment() {
 //                    motion_layer.visibility = View.GONE
                     childFragmentManager.apply {
                         beginTransaction()
-                            .replace(R.id.motion_layer, SettingsFragment.newInstance())
+                            .setCustomAnimations(R.anim.slide_in, R.anim.fade_out)
+                            .replace(R.id.motion_layer, SettingsFragment.newInstance(), "Settings")
                             .setTransition((FragmentTransaction.TRANSIT_FRAGMENT_FADE))
                             .addToBackStack("")
                             .commitAllowingStateLoss()
@@ -168,9 +168,10 @@ class MainPictureFragment : Fragment() {
                 }
                 R.id.test_frag_menu -> {
 //                    viewPageVisible()
-                     childFragmentManager.apply {
+                    childFragmentManager.apply {
                         beginTransaction()
-                            .replace(R.id.motion_layer, TestFragment.newInstance())
+                            .setCustomAnimations(R.anim.slide_in, R.anim.fade_out)
+                            .replace(R.id.motion_layer, TestFragment.newInstance(), "Test")
                             .setTransition((FragmentTransaction.TRANSIT_FRAGMENT_FADE))
                             .addToBackStack("")
                             .commitAllowingStateLoss()
@@ -203,9 +204,10 @@ class MainPictureFragment : Fragment() {
         indicator.visibility = if (visible) View.VISIBLE else View.GONE
         startChip.visibility = View.GONE
     }
-    private fun wikiBtnClickListener(){
+
+    private fun wikiBtnClickListener() {
         val wikiVisible = !visible
-        wiki_button.setOnClickListener{
+        wiki_button.setOnClickListener {
             TransitionManager.beginDelayedTransition(motion_layer, Slide(Gravity.START))
             startChip.visibility = View.GONE
             input_layout.visibility = if (wikiVisible) View.VISIBLE else View.GONE
@@ -215,9 +217,9 @@ class MainPictureFragment : Fragment() {
         }
     }
 
-    private fun seeChipListener(){
+    private fun seeChipListener() {
         visible = !visible
-        seeNext.setOnClickListener{
+        seeNext.setOnClickListener {
             TransitionManager.beginDelayedTransition(motion_layer, Slide(Gravity.END))
             seeNext.visibility = View.GONE
             wiki_button.visibility = if (!visible) View.VISIBLE else View.GONE

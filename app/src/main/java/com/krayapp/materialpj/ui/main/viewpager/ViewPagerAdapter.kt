@@ -1,5 +1,6 @@
 package com.krayapp.materialpj.ui.main.viewpager
 
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
