@@ -1,12 +1,17 @@
 package com.krayapp.materialpj.ui.main.viewpager
 
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
+import android.text.style.TextAppearanceSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.Toast
+import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.transition.ChangeBounds
 import androidx.transition.ChangeImageTransform
@@ -14,18 +19,10 @@ import androidx.transition.TransitionManager
 import androidx.transition.TransitionSet
 import coil.api.load
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.youtube.player.YouTubeBaseActivity
-import com.google.android.youtube.player.YouTubeInitializationResult
-import com.google.android.youtube.player.YouTubePlayer
-import com.krayapp.materialpj.BuildConfig
 import com.krayapp.materialpj.R
-import com.krayapp.materialpj.SquareImage
-import com.krayapp.materialpj.Toast
-import com.krayapp.materialpj.ui.main.MainPictureFragment
 import com.krayapp.materialpj.viewmodel.PictureInfo
 import kotlinx.android.synthetic.main.bottom_sheet_layout.*
 import kotlinx.android.synthetic.main.current_image_viewpager.*
-import kotlinx.android.synthetic.main.main_fragment.*
 
 class ViewPagerPictureFragment : Fragment() {
     private var pictureInfo: PictureInfo? = null
@@ -76,8 +73,15 @@ class ViewPagerPictureFragment : Fragment() {
     }
 
     private fun setExplanation() {
-        bottom_sheet_description_header.text = pictureInfo?.title
-        bottom_sheet_description.text = pictureInfo?.explanation
+        val spannableTitleString = SpannableString(pictureInfo?.title)
+        val spannableDescriptionString = SpannableString(pictureInfo?.explanation)
+        bottom_sheet_description_header.setText(spannableTitleString, TextView.BufferType.SPANNABLE)
+        bottom_sheet_description.setText(spannableDescriptionString, TextView.BufferType.SPANNABLE)
+        val spannableTitle = bottom_sheet_description_header.text as Spannable
+        val spannableDescription = bottom_sheet_description.text as Spannable
+        spannableTitle.setSpan(ForegroundColorSpan(ContextCompat
+            .getColor(requireContext(), R.color.fab_color_dark)), 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        spannableDescription.setSpan(TextAppearanceSpan(requireContext(),R.font.aguafina_script), 0, spannableDescriptionString.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
     }
 
     private fun setBottomSheetBehavior(bottomSheet: ConstraintLayout) {

@@ -47,6 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/layout_default_margin"
             android:layout_marginStart="140dp"
+            android:fontFamily="@font/aguafina_script"
             android:textAlignment="textStart"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

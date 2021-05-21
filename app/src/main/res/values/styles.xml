@@ -7,6 +7,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="fabColor">@color/fab_color_light</item>
         <item name="bottomAppBarColor">@color/bottom_app_bar_light</item>
+        <item name="fontFamily">@font/roboto</item>
     </style>
 
     <style name="AppTheme.Day" parent="AppTheme">
