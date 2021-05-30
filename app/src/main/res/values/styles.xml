@@ -52,7 +52,6 @@
         <item name="bottomSheetColor">@color/night_bottomsheet_color</item>
         <item name="wikiIconColor">@color/light_font_color</item>
         <item name="sandwichColor">@color/sandwich_light_color</item>
-
     </style>
 
     <style name="AppTheme.Mars" parent="AppTheme">
@@ -67,8 +66,8 @@
         <item name="wikiIconColor">@color/dark_font_color</item>
         <item name="bottomSheetColor">@color/day_bottomsheet_color</item>
         <item name="sandwichColor">@color/sandwich_dark_color</item>
-
     </style>
+
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
